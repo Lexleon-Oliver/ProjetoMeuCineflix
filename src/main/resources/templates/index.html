@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
+    <!-- responsividade -->
+    <link rel="stylesheet" href="responsive.css">
+    <!-- owl css -->
+    <link rel="stylesheet" href="owl/owl.carousel.min.css">
+    <link rel="stylesheet" href="owl/owl.theme.default.min.css">
+
+    <title>Meu Cineflix</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h2 class="logo">MEU CINEFLIX</h2>
+            <NAV>
+                <a href="#">Início</a>
+                <a href="#">Séries</a>
+                <a href="#">Filmes</a>
+                <a href="#">Documentários</a>
+            </NAV>
+            
+        </div>
+    </header>
+    <main>
+        <div class="filme-principal">
+            <div class="container">
+                <h3 class="titulo">CATÁLOGO</h3>
+                <p class="descricao">Servidor com o catálogo contendo todos os meus arquivos de filmes e séries</p>
+                <div class="botoes">
+                    <button role="button" class="botao">
+                        <i class="fa-solid fa fa-play"></i>
+                        ASSISTIR AGORA
+                    </button>
+                    <button role="button" class="botao">
+                        <i class="fas fa-info-circle"></i>
+                        MAIS INFORMAÇÕES
+                    </button>
+                </div>
+            </div>
+        </div>  
+    </main>
+    <div class="carrossel-filmes">
+        <script>
+            const options = {
+                method: 'GET',
+                cache: 'default'
+            }
+            fetch(`http://localhost:8080/api/v1/movies`,options)
+            .then(response=>{response.json()
+                .then(data => console.log(data))
+                })
+            .catch(e => console.log('Deu Erro: '+ e.message))
+
+
+        </script>
+        <h3 class="titulo">FILMES</h3>
+        <div class="owl-carousel owl-theme">
+            <div class="item">
+                <img class="box-serie" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/xnM1lUghCDqAFZRCxpLxhCyNq55.jpg" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+
+    <div class="carrossel-series">
+        <h3 class="titulo">SÉRIES</h3>
+        <div class="owl-carousel owl-theme">
+            <div class="item">
+                <img class="box-serie" src="https://www.themoviedb.org/t/p/w600_and_h900_bestv2/luE0KG1rWfUptbgNtlNtL5sihyd.jpg" alt="" srcset="">
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://kit.fontawesome.com/f39bdcf7ac.js"></script>
+    <script src="js/owl/jquery.min.js"></script>
+    <script src="js/owl/owl.carousel.min.js"></script>
+    <script src="js/owl/setup.js"></script>
+    
+    
+</body>
+</html>
