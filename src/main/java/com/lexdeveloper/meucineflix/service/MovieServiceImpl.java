@@ -10,6 +10,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -52,6 +53,47 @@ public class MovieServiceImpl implements MovieService{
         Movie movieToUpdate = mapper.toModel(movieDTO);
         Movie updatedMovie = repository.save(movieToUpdate);
         return createdMessageResponse(updatedMovie.getId(), "Updated movie with ID ");
+    }
+
+    @Override
+    public List<MovieDTO> findByYear(int intYear) {
+        String year = String.valueOf(intYear);
+        List<Movie> movies= repository.findMoviesByYear(year);
+        return repository.findMoviesByYear(year).stream()
+                .map(mapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<MovieDTO> findByGenre(String genre) {
+        List<Movie> movies = repository.findByGenre(genre);
+        return movies.stream()
+                .map(mapper::toDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<MovieDTO> findByRecents() {
+        List<MovieDTO> movies = findByYear(setYear());
+        if (movies.isEmpty()){
+            movies = findByYear(setYear() -1);
+        }
+        return movies;
+    }
+
+    private int setYear() {
+        LocalDate localDate = LocalDate.now();
+        return localDate.getYear();
+    }
+
+    @Override
+    public List<MovieDTO> findByClassics() {
+        int year = setYear() - 15;
+        List<Movie> movies= repository.findAll();
+        return movies.stream()
+                .filter(m -> Integer.parseInt(m.getYear()) <= year)
+                .map(mapper::toDTO)
+                .collect(Collectors.toList());
     }
 
     private MessageResponseDTO createdMessageResponse(Long id, String message) {

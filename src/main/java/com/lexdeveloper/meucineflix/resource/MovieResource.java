@@ -35,6 +35,24 @@ public class MovieResource {
         return service.findById(id);
     }
 
+    @GetMapping("/genre/{genre}")
+    @ResponseStatus(HttpStatus.OK)
+    public List<MovieDTO> findByGenre(@PathVariable String genre) {
+        return service.findByGenre(genre);
+    }
+
+    @GetMapping("/recents")
+    @ResponseStatus(HttpStatus.OK)
+    public List<MovieDTO> findNews() {
+        return service.findByRecents();
+    }
+
+    @GetMapping("/classics")
+    @ResponseStatus(HttpStatus.OK)
+    public List<MovieDTO> findClassics() {
+        return service.findByClassics();
+    }
+
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public MessageResponseDTO deleteMovie(@PathVariable Long id){

@@ -16,4 +16,11 @@ public interface MovieService {
 
     MessageResponseDTO updateMovie(Long id, MovieDTO movieDTO);
 
+    List<MovieDTO> findByYear( int year);
+
+    List<MovieDTO> findByGenre(String genre);
+
+    List<MovieDTO> findByRecents();
+
+    List<MovieDTO> findByClassics();
 }

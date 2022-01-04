@@ -97,6 +97,12 @@ header nav a:hover{
     display: block;
 }
 
+.box-acao{
+    height: 100%;
+    width: 100%;
+    display: block;
+}
+
 .box-serie{
     height: 100%;
     width: 100%;
@@ -104,6 +110,14 @@ header nav a:hover{
 }
 
 .carrossel-filmes{
+    margin-top: 5px;
+}
+
+carrossel-recentes{
+    margin-top: 5px;
+}
+
+.carrossel-acao{
     margin-top: 5px;
 }
 
