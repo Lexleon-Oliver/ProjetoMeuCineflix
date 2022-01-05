@@ -8,6 +8,8 @@ import com.lexdeveloper.meucineflix.mapper.MovieMapper;
 import com.lexdeveloper.meucineflix.repository.MovieRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -21,8 +23,8 @@ public class MovieServiceImpl implements MovieService{
     private final MovieRepository repository;
     private final MovieMapper mapper = MovieMapper.INSTANCE;
 
-    public List<MovieDTO> listAll() {
-        List<Movie> movies= repository.findAll();
+    public List<MovieDTO> listAll(Pageable pageable) {
+        Page<Movie> movies= repository.findAll(pageable);
         return movies.stream()
                 .map(mapper::toDTO)
                 .collect(Collectors.toList());
@@ -56,27 +58,27 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public List<MovieDTO> findByYear(int intYear) {
+    public List<MovieDTO> findByYear(int intYear, Pageable pageable) {
         String year = String.valueOf(intYear);
-        List<Movie> movies= repository.findMoviesByYear(year);
-        return repository.findMoviesByYear(year).stream()
+        List<Movie> movies= repository.findMoviesByYear(year, pageable);
+        return repository.findMoviesByYear(year,pageable).stream()
                 .map(mapper::toDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<MovieDTO> findByGenre(String genre) {
-        List<Movie> movies = repository.findByGenre(genre);
+    public List<MovieDTO> findByGenre(String genre, Pageable pageable) {
+        List<Movie> movies = repository.findByGenre(genre, pageable);
         return movies.stream()
                 .map(mapper::toDTO)
                 .collect(Collectors.toList());
     }
 
     @Override
-    public List<MovieDTO> findByRecents() {
-        List<MovieDTO> movies = findByYear(setYear());
+    public List<MovieDTO> findByRecents(Pageable pageable) {
+        List<MovieDTO> movies = findByYear(setYear(), pageable);
         if (movies.isEmpty()){
-            movies = findByYear(setYear() -1);
+            movies = findByYear(setYear() -1,pageable);
         }
         return movies;
     }
@@ -87,9 +89,9 @@ public class MovieServiceImpl implements MovieService{
     }
 
     @Override
-    public List<MovieDTO> findByClassics() {
+    public List<MovieDTO> findByClassics(Pageable pageable) {
         int year = setYear() - 15;
-        List<Movie> movies= repository.findAll();
+        Page<Movie> movies= repository.findAll(pageable);
         return movies.stream()
                 .filter(m -> Integer.parseInt(m.getYear()) <= year)
                 .map(mapper::toDTO)

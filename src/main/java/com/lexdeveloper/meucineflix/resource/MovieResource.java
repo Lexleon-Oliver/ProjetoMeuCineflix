@@ -5,6 +5,7 @@ import com.lexdeveloper.meucineflix.dto.response.MessageResponseDTO;
 import com.lexdeveloper.meucineflix.service.MovieService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,8 +20,8 @@ public class MovieResource {
 
     @GetMapping()
     @ResponseStatus(HttpStatus.OK)
-    public List<MovieDTO> allMovies() {
-        return service.listAll();
+    public List<MovieDTO> allMovies(Pageable pageable) {
+        return service.listAll(pageable);
     }
 
     @PostMapping()
@@ -37,20 +38,20 @@ public class MovieResource {
 
     @GetMapping("/genre/{genre}")
     @ResponseStatus(HttpStatus.OK)
-    public List<MovieDTO> findByGenre(@PathVariable String genre) {
-        return service.findByGenre(genre);
+    public List<MovieDTO> findByGenre(@PathVariable String genre, Pageable pageable) {
+        return service.findByGenre(genre, pageable);
     }
 
     @GetMapping("/recents")
     @ResponseStatus(HttpStatus.OK)
-    public List<MovieDTO> findNews() {
-        return service.findByRecents();
+    public List<MovieDTO> findNews(Pageable pageable) {
+        return service.findByRecents(pageable);
     }
 
     @GetMapping("/classics")
     @ResponseStatus(HttpStatus.OK)
-    public List<MovieDTO> findClassics() {
-        return service.findByClassics();
+    public List<MovieDTO> findClassics(Pageable pageable) {
+        return service.findByClassics(pageable);
     }
 
     @DeleteMapping("/{id}")

@@ -2,11 +2,12 @@ package com.lexdeveloper.meucineflix.service;
 
 import com.lexdeveloper.meucineflix.dto.request.MovieDTO;
 import com.lexdeveloper.meucineflix.dto.response.MessageResponseDTO;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface MovieService {
-    List<MovieDTO> listAll();
+    List<MovieDTO> listAll(Pageable pageable);
 
     MessageResponseDTO createMovie(MovieDTO movieDTO);
 
@@ -16,11 +17,11 @@ public interface MovieService {
 
     MessageResponseDTO updateMovie(Long id, MovieDTO movieDTO);
 
-    List<MovieDTO> findByYear( int year);
+    List<MovieDTO> findByYear( int year, Pageable pageable);
 
-    List<MovieDTO> findByGenre(String genre);
+    List<MovieDTO> findByGenre(String genre, Pageable pageable);
 
-    List<MovieDTO> findByRecents();
+    List<MovieDTO> findByRecents(Pageable pageable);
 
-    List<MovieDTO> findByClassics();
+    List<MovieDTO> findByClassics(Pageable pageable);
 }

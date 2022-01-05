@@ -46,15 +46,20 @@
         <div class="owl-carousel owl-theme" id="lista-filmes">
         </div>
         <script>
-            const options = {
-                method: 'GET',
-                cache: 'default'
-            }
-            fetch(`http://localhost:8080/api/v1/movies`,options)
-            .then( response => response.json())
-                .then(data => {
+            contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
                     const divFilmes = document.querySelector('#lista-filmes');
-                    data.map((item)=> {
+                    movies.map((item)=> {
                         const div = document.createElement('div');
                         div.setAttribute('class','item');
                         var img = document.createElement('img');
@@ -63,8 +68,9 @@
                         div.appendChild(img);
                         divFilmes.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
@@ -73,21 +79,31 @@
         <div class="owl-carousel owl-theme" id="lista-recentes">
         </div>
         <script>
-            fetch(`http://localhost:8080/api/v1/movies/recents`,options)
-            .then( response => response.json())
-                .then(data => {
-                    const divRecents = document.querySelector('#lista-recentes');
-                    data.map((item)=> {
-                        div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-recente');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divRecents.appendChild(div);
+             contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies/recents?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
+                     const divRecents = document.querySelector('#lista-recentes');
+                     movies.map((item)=> {
+                         div = document.createElement('div');
+                         div.setAttribute('class','item');
+                         var img = document.createElement('img');
+                         img.setAttribute('class','box-recente');
+                         img.setAttribute('src',item.thumbnail)
+                         div.appendChild(img);
+                         divRecents.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
@@ -96,11 +112,20 @@
         <div class="owl-carousel owl-theme" id="lista-classicos">
         </div>
         <script>
-            fetch(`http://localhost:8080/api/v1/movies/classics`,options)
-            .then( response => response.json())
-                .then(data => {
+            contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies/classics?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
                     const divClassico = document.querySelector('#lista-classicos');
-                    data.map((item)=> {
+                    movies.map((item)=> {
                         div = document.createElement('div');
                         div.setAttribute('class','item');
                         var img = document.createElement('img');
@@ -109,8 +134,9 @@
                         div.appendChild(img);
                         divClassico.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
@@ -119,21 +145,31 @@
         <div class="owl-carousel owl-theme" id="lista-acao">
         </div>
         <script>
-            fetch(`http://localhost:8080/api/v1/movies/genre/Ação`,options)
-            .then( response => response.json())
-                .then(data => {
-                    const divAcao = document.querySelector('#lista-acao');
-                    data.map((item)=> {
-                        div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-acao');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divAcao.appendChild(div);
+            contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies/genre/Ação?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
+                     const divAcao = document.querySelector('#lista-acao');
+                     movies.map((item)=> {
+                         div = document.createElement('div');
+                         div.setAttribute('class','item');
+                         var img = document.createElement('img');
+                         img.setAttribute('class','box-acao');
+                         img.setAttribute('src',item.thumbnail)
+                         div.appendChild(img);
+                         divAcao.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
@@ -142,21 +178,31 @@
         <div class="owl-carousel owl-theme" id="lista-animacao">
         </div>
         <script>
-            fetch(`http://localhost:8080/api/v1/movies/genre/Animação`,options)
-            .then( response => response.json())
-                .then(data => {
-                    const divAnimacao = document.querySelector('#lista-animacao');
-                    data.map((item)=> {
-                        div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-animacao');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divAnimacao.appendChild(div);
+            contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies/genre/Animação?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
+                     const divAnimacao = document.querySelector('#lista-animacao');
+                     movies.map((item)=> {
+                         div = document.createElement('div');
+                         div.setAttribute('class','item');
+                         var img = document.createElement('img');
+                         img.setAttribute('class','box-animacao');
+                         img.setAttribute('src',item.thumbnail)
+                         div.appendChild(img);
+                         divAnimacao.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
@@ -165,21 +211,31 @@
         <div class="owl-carousel owl-theme" id="lista-aventura">
         </div>
         <script>
-            fetch(`http://localhost:8080/api/v1/movies/genre/Aventura`,options)
-            .then( response => response.json())
-                .then(data => {
-                    const divAventura = document.querySelector('#lista-aventura');
-                    data.map((item)=> {
-                        div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-aventura');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divAventura.appendChild(div);
+            contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies/genre/Aventura?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
+                     const divAventura = document.querySelector('#lista-aventura');
+                     movies.map((item)=> {
+                         div = document.createElement('div');
+                         div.setAttribute('class','item');
+                         var img = document.createElement('img');
+                         img.setAttribute('class','box-aventura');
+                         img.setAttribute('src',item.thumbnail)
+                         div.appendChild(img);
+                         divAventura.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
@@ -188,21 +244,31 @@
         <div class="owl-carousel owl-theme" id="lista-comedia">
         </div>
         <script>
-            fetch(`http://localhost:8080/api/v1/movies/genre/Comédia`,options)
-            .then( response => response.json())
-                .then(data => {
-                    const divComedia = document.querySelector('#lista-comedia');
-                    data.map((item)=> {
-                        div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-comedia');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divComedia.appendChild(div);
+            contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies/genre/Comédia?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
+                     const divComedia = document.querySelector('#lista-comedia');
+                     movies.map((item)=> {
+                         div = document.createElement('div');
+                         div.setAttribute('class','item');
+                         var img = document.createElement('img');
+                         img.setAttribute('class','box-comedia');
+                         img.setAttribute('src',item.thumbnail)
+                         div.appendChild(img);
+                         divComedia.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
@@ -211,21 +277,31 @@
         <div class="owl-carousel owl-theme" id="lista-drama">
         </div>
         <script>
-            fetch(`http://localhost:8080/api/v1/movies/genre/Drama`,options)
-            .then( response => response.json())
-                .then(data => {
-                    const divDrama = document.querySelector('#lista-drama');
-                    data.map((item)=> {
-                        div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-drama');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divDrama.appendChild(div);
+            contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies/genre/Drama?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
+                     const divDrama = document.querySelector('#lista-drama');
+                     movies.map((item)=> {
+                         div = document.createElement('div');
+                         div.setAttribute('class','item');
+                         var img = document.createElement('img');
+                         img.setAttribute('class','box-drama');
+                         img.setAttribute('src',item.thumbnail)
+                         div.appendChild(img);
+                         divDrama.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
@@ -234,21 +310,32 @@
         <div class="owl-carousel owl-theme" id="lista-familia">
         </div>
         <script>
-            fetch(`http://localhost:8080/api/v1/movies/genre/Família`,options)
-            .then( response => response.json())
-                .then(data => {
-                    const divFamilia = document.querySelector('#lista-familia');
-                    data.map((item)=> {
-                        div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-familia');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divFamilia.appendChild(div);
+            contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies/genre/Família?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
+
+                     const divFamilia = document.querySelector('#lista-familia');
+                     movies.map((item)=> {
+                         div = document.createElement('div');
+                         div.setAttribute('class','item');
+                         var img = document.createElement('img');
+                         img.setAttribute('class','box-familia');
+                         img.setAttribute('src',item.thumbnail)
+                         div.appendChild(img);
+                         divFamilia.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
@@ -257,21 +344,31 @@
         <div class="owl-carousel owl-theme" id="lista-fantasia">
         </div>
         <script>
-            fetch(`http://localhost:8080/api/v1/movies/genre/Fantasia`,options)
-            .then( response => response.json())
-                .then(data => {
-                    const divFantasia = document.querySelector('#lista-fantasia');
-                    data.map((item)=> {
-                        div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-fantasia');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divFantasia.appendChild(div);
+        contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies/genre/Fantasia?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
+                     const divFantasia = document.querySelector('#lista-fantasia');
+                     movies.map((item)=> {
+                         div = document.createElement('div');
+                         div.setAttribute('class','item');
+                         var img = document.createElement('img');
+                         img.setAttribute('class','box-fantasia');
+                         img.setAttribute('src',item.thumbnail)
+                         div.appendChild(img);
+                         divFantasia.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
@@ -280,21 +377,31 @@
         <div class="owl-carousel owl-theme" id="lista-ficcao">
         </div>
         <script>
-            fetch(`http://localhost:8080/api/v1/movies/genre/Ficção científica`,options)
-            .then( response => response.json())
-                .then(data => {
-                    const divFiccao = document.querySelector('#lista-ficcao');
-                    data.map((item)=> {
-                        div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-ficcao');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divFiccao.appendChild(div);
+            contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies/genre/Ficção científica?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
+                     const divFiccao = document.querySelector('#lista-ficcao');
+                     movies.map((item)=> {
+                         div = document.createElement('div');
+                         div.setAttribute('class','item');
+                         var img = document.createElement('img');
+                         img.setAttribute('class','box-ficcao');
+                         img.setAttribute('src',item.thumbnail)
+                         div.appendChild(img);
+                         divFiccao.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
@@ -303,21 +410,31 @@
         <div class="owl-carousel owl-theme" id="lista-romance">
         </div>
         <script>
-            fetch(`http://localhost:8080/api/v1/movies/genre/Romance`,options)
-            .then( response => response.json())
-                .then(data => {
-                    const divRomance = document.querySelector('#lista-romance');
-                    data.map((item)=> {
-                        div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-romance');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divRomance.appendChild(div);
+            contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies/genre/Romance?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
+                     const divRomance = document.querySelector('#lista-romance');
+                     movies.map((item)=> {
+                         div = document.createElement('div');
+                         div.setAttribute('class','item');
+                         var img = document.createElement('img');
+                         img.setAttribute('class','box-romance');
+                         img.setAttribute('src',item.thumbnail)
+                         div.appendChild(img);
+                         divRomance.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
@@ -326,21 +443,31 @@
         <div class="owl-carousel owl-theme" id="lista-terror">
         </div>
         <script>
-            fetch(`http://localhost:8080/api/v1/movies/genre/Terror`,options)
-            .then( response => response.json())
-                .then(data => {
-                    const divTerror = document.querySelector('#lista-terror');
-                    data.map((item)=> {
-                        div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-terror');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divTerror.appendChild(div);
+            contador = 0;
+            pag = 0
+            do{
+                let url= "http://localhost:8080/api/v1/movies/genre/Terror?page="+pag
+                let request = new XMLHttpRequest()
+                request.open("GET",url,false)
+                request.send()
+                data = request.responseText
+                movies = JSON.parse(data);
+                if(movies.length==0){
+                    contador++
+                }else{
+                     const divTerror = document.querySelector('#lista-terror');
+                     movies.map((item)=> {
+                         div = document.createElement('div');
+                         div.setAttribute('class','item');
+                         var img = document.createElement('img');
+                         img.setAttribute('class','box-terror');
+                         img.setAttribute('src',item.thumbnail)
+                         div.appendChild(img);
+                         divTerror.appendChild(div);
                     })
-                })
-            .catch(e => console.log('Deu Erro: '+ e.message))
+                    pag++
+                }
+            }while(contador == 0);
         </script>
     </div>
 
