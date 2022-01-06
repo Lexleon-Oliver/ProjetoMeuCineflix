@@ -45,438 +45,87 @@
         <h3 class="titulo">FILMES</h3>
         <div class="owl-carousel owl-theme" id="lista-filmes">
         </div>
-        <script>
-            contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-                    const divFilmes = document.querySelector('#lista-filmes');
-                    movies.map((item)=> {
-                        const div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-filme');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divFilmes.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
     <div class="carrossel-recentes">
         <h3 class="titulo">NOVIDADES</h3>
         <div class="owl-carousel owl-theme" id="lista-recentes">
         </div>
-        <script>
-             contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies/recents?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-                     const divRecents = document.querySelector('#lista-recentes');
-                     movies.map((item)=> {
-                         div = document.createElement('div');
-                         div.setAttribute('class','item');
-                         var img = document.createElement('img');
-                         img.setAttribute('class','box-recente');
-                         img.setAttribute('src',item.thumbnail)
-                         div.appendChild(img);
-                         divRecents.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
     <div class="carrossel-classicos">
         <h3 class="titulo">CLÁSSICOS</h3>
         <div class="owl-carousel owl-theme" id="lista-classicos">
         </div>
-        <script>
-            contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies/classics?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-                    const divClassico = document.querySelector('#lista-classicos');
-                    movies.map((item)=> {
-                        div = document.createElement('div');
-                        div.setAttribute('class','item');
-                        var img = document.createElement('img');
-                        img.setAttribute('class','box-classico');
-                        img.setAttribute('src',item.thumbnail)
-                        div.appendChild(img);
-                        divClassico.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
     <div class="carrossel-acao">
         <h3 class="titulo">AÇÃO</h3>
         <div class="owl-carousel owl-theme" id="lista-acao">
         </div>
-        <script>
-            contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies/genre/Ação?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-                     const divAcao = document.querySelector('#lista-acao');
-                     movies.map((item)=> {
-                         div = document.createElement('div');
-                         div.setAttribute('class','item');
-                         var img = document.createElement('img');
-                         img.setAttribute('class','box-acao');
-                         img.setAttribute('src',item.thumbnail)
-                         div.appendChild(img);
-                         divAcao.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
     <div class="carrossel-animacao">
         <h3 class="titulo">ANIMAÇÃO</h3>
         <div class="owl-carousel owl-theme" id="lista-animacao">
         </div>
-        <script>
-            contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies/genre/Animação?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-                     const divAnimacao = document.querySelector('#lista-animacao');
-                     movies.map((item)=> {
-                         div = document.createElement('div');
-                         div.setAttribute('class','item');
-                         var img = document.createElement('img');
-                         img.setAttribute('class','box-animacao');
-                         img.setAttribute('src',item.thumbnail)
-                         div.appendChild(img);
-                         divAnimacao.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
     <div class="carrossel-aventura">
         <h3 class="titulo">AVENTURA</h3>
         <div class="owl-carousel owl-theme" id="lista-aventura">
         </div>
-        <script>
-            contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies/genre/Aventura?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-                     const divAventura = document.querySelector('#lista-aventura');
-                     movies.map((item)=> {
-                         div = document.createElement('div');
-                         div.setAttribute('class','item');
-                         var img = document.createElement('img');
-                         img.setAttribute('class','box-aventura');
-                         img.setAttribute('src',item.thumbnail)
-                         div.appendChild(img);
-                         divAventura.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
     <div class="carrossel-comedia">
         <h3 class="titulo">COMÉDIA</h3>
         <div class="owl-carousel owl-theme" id="lista-comedia">
         </div>
-        <script>
-            contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies/genre/Comédia?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-                     const divComedia = document.querySelector('#lista-comedia');
-                     movies.map((item)=> {
-                         div = document.createElement('div');
-                         div.setAttribute('class','item');
-                         var img = document.createElement('img');
-                         img.setAttribute('class','box-comedia');
-                         img.setAttribute('src',item.thumbnail)
-                         div.appendChild(img);
-                         divComedia.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
     <div class="carrossel-drama">
         <h3 class="titulo">DRAMA</h3>
         <div class="owl-carousel owl-theme" id="lista-drama">
         </div>
-        <script>
-            contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies/genre/Drama?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-                     const divDrama = document.querySelector('#lista-drama');
-                     movies.map((item)=> {
-                         div = document.createElement('div');
-                         div.setAttribute('class','item');
-                         var img = document.createElement('img');
-                         img.setAttribute('class','box-drama');
-                         img.setAttribute('src',item.thumbnail)
-                         div.appendChild(img);
-                         divDrama.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
     <div class="carrossel-familia">
         <h3 class="titulo">FAMÍLIA</h3>
         <div class="owl-carousel owl-theme" id="lista-familia">
         </div>
-        <script>
-            contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies/genre/Família?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-
-                     const divFamilia = document.querySelector('#lista-familia');
-                     movies.map((item)=> {
-                         div = document.createElement('div');
-                         div.setAttribute('class','item');
-                         var img = document.createElement('img');
-                         img.setAttribute('class','box-familia');
-                         img.setAttribute('src',item.thumbnail)
-                         div.appendChild(img);
-                         divFamilia.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
     <div class="carrossel-fantasia">
         <h3 class="titulo">FANTASIA</h3>
         <div class="owl-carousel owl-theme" id="lista-fantasia">
         </div>
-        <script>
-        contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies/genre/Fantasia?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-                     const divFantasia = document.querySelector('#lista-fantasia');
-                     movies.map((item)=> {
-                         div = document.createElement('div');
-                         div.setAttribute('class','item');
-                         var img = document.createElement('img');
-                         img.setAttribute('class','box-fantasia');
-                         img.setAttribute('src',item.thumbnail)
-                         div.appendChild(img);
-                         divFantasia.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
     <div class="carrossel-ficcao">
         <h3 class="titulo">FICÇÃO CIENTÍFICA</h3>
         <div class="owl-carousel owl-theme" id="lista-ficcao">
         </div>
-        <script>
-            contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies/genre/Ficção científica?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-                     const divFiccao = document.querySelector('#lista-ficcao');
-                     movies.map((item)=> {
-                         div = document.createElement('div');
-                         div.setAttribute('class','item');
-                         var img = document.createElement('img');
-                         img.setAttribute('class','box-ficcao');
-                         img.setAttribute('src',item.thumbnail)
-                         div.appendChild(img);
-                         divFiccao.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
     <div class="carrossel-romance">
         <h3 class="titulo">ROMANCE</h3>
         <div class="owl-carousel owl-theme" id="lista-romance">
         </div>
-        <script>
-            contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies/genre/Romance?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-                     const divRomance = document.querySelector('#lista-romance');
-                     movies.map((item)=> {
-                         div = document.createElement('div');
-                         div.setAttribute('class','item');
-                         var img = document.createElement('img');
-                         img.setAttribute('class','box-romance');
-                         img.setAttribute('src',item.thumbnail)
-                         div.appendChild(img);
-                         divRomance.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
     <div class="carrossel-terror">
         <h3 class="titulo">TERROR</h3>
         <div class="owl-carousel owl-theme" id="lista-terror">
         </div>
-        <script>
-            contador = 0;
-            pag = 0
-            do{
-                let url= "http://localhost:8080/api/v1/movies/genre/Terror?page="+pag
-                let request = new XMLHttpRequest()
-                request.open("GET",url,false)
-                request.send()
-                data = request.responseText
-                movies = JSON.parse(data);
-                if(movies.length==0){
-                    contador++
-                }else{
-                     const divTerror = document.querySelector('#lista-terror');
-                     movies.map((item)=> {
-                         div = document.createElement('div');
-                         div.setAttribute('class','item');
-                         var img = document.createElement('img');
-                         img.setAttribute('class','box-terror');
-                         img.setAttribute('src',item.thumbnail)
-                         div.appendChild(img);
-                         divTerror.appendChild(div);
-                    })
-                    pag++
-                }
-            }while(contador == 0);
-        </script>
     </div>
 
 
-    
+    <script src="js/main.js"></script>
     <script src="https://kit.fontawesome.com/f39bdcf7ac.js"></script>
     <script src="js/owl/jquery.min.js"></script>
     <script src="js/owl/owl.carousel.min.js"></script>
     <script src="js/owl/setup.js"></script>
+
     
     
 </body>

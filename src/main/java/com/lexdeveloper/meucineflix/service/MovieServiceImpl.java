@@ -76,11 +76,11 @@ public class MovieServiceImpl implements MovieService{
 
     @Override
     public List<MovieDTO> findByRecents(Pageable pageable) {
-        List<MovieDTO> movies = findByYear(setYear(), pageable);
-        if (movies.isEmpty()){
-            movies = findByYear(setYear() -1,pageable);
-        }
-        return movies;
+        List<MovieDTO> moviesThisYear = findByYear(setYear(), pageable);
+        List<MovieDTO> moviesLastYear = findByYear(setYear() -1,pageable);
+        List<MovieDTO> recentMovies = moviesThisYear;
+        recentMovies.addAll(moviesLastYear);
+        return recentMovies;
     }
 
     private int setYear() {
