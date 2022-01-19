@@ -12,6 +12,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.swing.*;
+import java.io.File;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -96,6 +99,21 @@ public class MovieServiceImpl implements MovieService{
                 .filter(m -> Integer.parseInt(m.getYear()) <= year)
                 .map(mapper::toDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public void playById(Long id){
+        Movie movieFound = verifyIfExists(id);
+        String path = movieFound.getStorage();
+        try {
+//            Comando para abrir o filme com o player de video padrão
+            String[] args = new String[] {"/bin/bash", "-c", "xdg-open "+path, "with", "args"};
+            Process proc = new ProcessBuilder(args).start();
+        } catch (Exception error){
+            System.out.println("Erro ao abrir filme: "+path+" Erro: "+error);
+        }
+
+
     }
 
     private MessageResponseDTO createdMessageResponse(Long id, String message) {

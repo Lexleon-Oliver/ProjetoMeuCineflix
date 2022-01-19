@@ -65,4 +65,11 @@ public class MovieResource {
     public MessageResponseDTO updateMovie(@PathVariable Long id, @Valid @RequestBody MovieDTO movieDTO){
         return service.updateMovie(id,movieDTO);
     }
+
+    @GetMapping("/player/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void playById(@PathVariable Long id) {
+        service.playById(id);
+    }
+
 }

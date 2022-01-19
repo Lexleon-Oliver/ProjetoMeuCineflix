@@ -30,6 +30,8 @@ public class MovieDTO {
     @NotEmpty
     private String thumbnail;
 
+    private String background;
+
     @NotEmpty
     private String storage;
 

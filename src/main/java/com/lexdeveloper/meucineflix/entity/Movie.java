@@ -34,6 +34,8 @@ public class Movie {
     @Column(nullable = false)
     private String thumbnail;
 
+    private String background;
+
     @Column(nullable = false)
     private String storage;
 

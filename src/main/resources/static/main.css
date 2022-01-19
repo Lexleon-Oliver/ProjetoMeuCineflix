@@ -43,7 +43,7 @@ header nav a:hover{
 .filme-principal{
     font-size: 16px;
     background: linear-gradient(rgba(0,0,0,.50),rgba(0,0,0,.50)50%), url('/img/cinema.jpg');
-    height: 400px;
+    height: 50vh;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -127,4 +127,17 @@ carrossel-recentes{
 
 .titulo{
     margin-left: 20px;
+}
+
+.item img{
+    transform: scale(0.9);
+    transition: all ease 0.2s;
+}
+
+.item img:hover{
+    transform: scale(1);
+}
+
+.item{
+    cursor: pointer;
 }
