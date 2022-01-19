@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="filme.css">
+    <!-- responsividade -->
+    <link rel="stylesheet" href="responsive.css">
+
+    <title>Meu Cineflix</title>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h2 class="logo">MEU CINEFLIX</h2>
+        <NAV>
+            <a href="http://localhost:8080/">Início</a>
+            <a href="#">Séries</a>
+        </NAV>
+
+    </div>
+</header>
+<main>
+    <div class="filme-selecionado">
+        <div class="container">
+            <div class="info-filme">
+                <h4 class="titulo-filme"></h4>
+                <p class="descricao-filme"></p>
+                <p class="nome-us-filme"></p>
+                <p class="ano-filme"></p>
+                <p class="genero-filme"></p>
+                <p class="nota-filme"></p>
+            </div>
+
+            <div class="botoes">
+                <button role="button" class="botao" onclick="assistir()">
+                    <i class="fa-solid fa fa-play"></i>
+                    ASSISTIR AGORA
+                </button>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+<script src="js/filme.js"></script>
+<script src="https://kit.fontawesome.com/f39bdcf7ac.js"></script>
+
+
+
+</body>
+</html>
