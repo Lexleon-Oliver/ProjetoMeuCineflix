@@ -20,4 +20,9 @@ public class ErrorResource extends ResponseEntityExceptionHandler {
     public ErrorMessage resourceNotFound(Exception ex, WebRequest req){
         return new ErrorMessage(404, ex.getLocalizedMessage(), "Not found", "Resource Not Found Exception");
     }
+
+    @ExceptionHandler(Exception.class)
+    public ErrorMessage exceptionResource(Exception ex, WebRequest req){
+        return new ErrorMessage(500, ex.getLocalizedMessage(), "Internal Server Error","Internal Server Error Exception");
+    }
 }

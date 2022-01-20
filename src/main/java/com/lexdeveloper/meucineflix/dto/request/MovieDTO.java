@@ -48,7 +48,6 @@ public class MovieDTO {
     @Size(max = 255, message = "The genre field must have until 255 characters")
     private String genre;
 
-    @NotEmpty
-    private int rating;
+    private Integer rating;
 }
 
