@@ -15,11 +15,13 @@ function getMovies(url){
 
 function getAllMovies(){
     var allMovies = []
+    var pag = 0;
     let contador = 0;
-    let pag= 0;
+
     do{
         let movies = getMovies("http://localhost:8080/api/v1/movies?page="+pag)
         if(movies.length==0){
+            localStorage.setItem("lastPage", pag-1)
             contador++
         }else{
             movies.map((item)=> {
@@ -78,17 +80,37 @@ function createClassicMovies(allMovies){
     })
     return classics
 }
+function createLastMovies(allMovies){
+    var last = []
+    var lastId= 0
+    movies= getMovies("http://localhost:8080/api/v1/movies?page="+localStorage.getItem("lastPage"))
+    movies.map((item)=> {
+        if(item.id>lastId){
+            lastId = item.id;
+        }
+    })
+    allMovies.map((item)=> {
+        if(item.id>=lastId-30){
+            last.push(item)
+        }
+    })
+    return last
+}
+
 
 function main(){
      var allMovies= getAllMovies()
      var recentMovies= createRecentMovies(allMovies)
      var classicMovies= createClassicMovies(allMovies)
+     var lastMovies= createLastMovies(allMovies)
 //    Criar todos os filmes
     createMovieCarrossel(allMovies,"divFilmes","#lista-filmes","box-filme")
 //    Criar recentes
     createMovieCarrossel(recentMovies,"divRecents","#lista-recentes","box-recente")
 //    Criar classicos
     createMovieCarrossel(classicMovies,"divClassico","#lista-classicos","box-classico")
+//    Criar ultimos adicionados
+    createMovieCarrossel(lastMovies,"divUltimos","#lista-ultimos","box-ultimos")
 //    Criar Ação
     createMovieCarrossel(createMoviesCategory(allMovies,"Ação"),"divAcao","#lista-acao","box-acao")
 //    Criar Animação
