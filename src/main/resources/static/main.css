@@ -39,8 +39,8 @@ header nav a:hover{
     color: #fff;
 }
 
-/* filme principal */
-.filme-principal{
+/* banner principal */
+.banner-principal{
     font-size: 16px;
     background: linear-gradient(rgba(0,0,0,.50),rgba(0,0,0,.50)50%), url('/img/cinema.jpg');
     height: 50vh;
@@ -51,13 +51,14 @@ header nav a:hover{
     align-items: flex-start;
 }
 
-.filme-principal .descricao{
+.banner-principal .descricao{
     margin-top: 10px;
     margin-bottom: 90px;
 }
 
-.filme-principal .titulo{
+.banner-principal .titulo{
     margin-top: 15%;
+    margin-left: 10px;
     font-size: 40px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }

@@ -12,9 +12,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.swing.*;
-import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -38,6 +35,12 @@ public class MovieServiceImpl implements MovieService{
         Movie movieToSave = mapper.toModel(movieDTO);
         Movie savedMovie = repository.save(movieToSave);
         return createdMessageResponse(savedMovie.getId(), "Created movie with ID ");
+    }
+    private MessageResponseDTO createdMessageResponse(Long id, String message) {
+        return MessageResponseDTO
+                .builder()
+                .message(message+id)
+                .build();
     }
 
     public MovieDTO findById(Long id) {
@@ -112,15 +115,6 @@ public class MovieServiceImpl implements MovieService{
         } catch (Exception error){
             System.out.println("Erro ao abrir filme: "+path+" Erro: "+error);
         }
-
-
-    }
-
-    private MessageResponseDTO createdMessageResponse(Long id, String message) {
-        return MessageResponseDTO
-                .builder()
-                .message(message+id)
-                .build();
     }
 
     private Movie verifyIfExists(Long id){

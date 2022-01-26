@@ -1,9 +1,9 @@
 
-/*!* filme selecionado *!*/
-.filme-selecionado{
+/*!* serie selecionada *!*/
+.serie-selecionada{
     font-size: 16px;
     background: linear-gradient(rgba(0,0,0,.50),rgba(0,0,0,.50)50%);
-    height: 95vh;
+    height: 90vh;
     background-size: cover;
     display: flex;
     flex-direction: column;
@@ -12,34 +12,34 @@
 }
 
 
-.filme-selecionado .descricao-filme{
+.serie-selecionada .descricao-serie{
     margin: 10px 20px 40px;
 }
 
-.filme-selecionado .titulo-filme{
+.serie-selecionada .titulo-serie{
     margin-top: 15%;
     margin-left: 10px;
     font-size: 40px;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 
-.nome-us-filme{
+.nome-us-serie{
     margin-left: 10px;
 }
 
-.ano-filme{
+.ano-serie{
     margin-left: 10px;
 }
 
-.genero-filme{
+.genero-serie{
     margin-left: 10px;
 }
 
-.nota-filme{
+.nota-serie{
     margin-left: 10px;
 }
 
-.info-filme{
+.info-serie{
     margin-right: 50%;
     margin-bottom: 80px;
     background: linear-gradient(rgba(0,0,0,.50),rgba(0,0,0,.50)100%);
@@ -57,6 +57,10 @@
 }
 .estrelas{
     margin-left: 10px;
+}
+
+.info-episode{
+    margin-left: 30px;
 }
 
 

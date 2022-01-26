@@ -14,8 +14,8 @@ function getMovies(url){
 }
 
 function getAllMovies(){
-    var allMovies = []
-    var pag = 0;
+    const allMovies = [];
+    let pag = 0;
     let contador = 0;
 
     do{
@@ -34,8 +34,8 @@ function getAllMovies(){
 
 }
 
-function createMovieCarrossel( allMovies, divName, nameSelector, classImg){
-
+function createMovieCarrossel(idTitle,textTitle, allMovies, divName, nameSelector, classImg){
+            document.querySelector('#'+idTitle).textContent=textTitle;
             divName = document.querySelector(nameSelector);
             allMovies.map((item)=> {
                 let div = document.createElement('div');
@@ -50,7 +50,7 @@ function createMovieCarrossel( allMovies, divName, nameSelector, classImg){
 }
 
 function createMoviesCategory(allMovies, categoryName){
-    var category = []
+    const category = [];
     allMovies.map((item)=> {
         if(item.genre.includes(categoryName)){
             category.push(item)
@@ -60,7 +60,7 @@ function createMoviesCategory(allMovies, categoryName){
 }
 
 function createRecentMovies(allMovies){
-    var recents = []
+    const recents = [];
     let year = new Date().getFullYear()
     allMovies.map((item)=> {
         if(item.year>=year-1){
@@ -71,7 +71,7 @@ function createRecentMovies(allMovies){
 }
 
 function createClassicMovies(allMovies){
-    var classics = []
+    const classics = [];
     let year = new Date().getFullYear()
     allMovies.map((item)=> {
         if(item.year<=year-15){
@@ -81,9 +81,9 @@ function createClassicMovies(allMovies){
     return classics
 }
 function createLastMovies(allMovies){
-    var last = []
-    var lastId= 0
-    movies= getMovies("http://localhost:8080/api/v1/movies?page="+localStorage.getItem("lastPage"))
+    const last = [];
+    let lastId = 0;
+    let movies = getMovies("http://localhost:8080/api/v1/movies?page=" + localStorage.getItem("lastPage"))
     movies.map((item)=> {
         if(item.id>lastId){
             lastId = item.id;
@@ -99,37 +99,37 @@ function createLastMovies(allMovies){
 
 
 function main(){
-     var allMovies= getAllMovies()
-     var recentMovies= createRecentMovies(allMovies)
-     var classicMovies= createClassicMovies(allMovies)
-     var lastMovies= createLastMovies(allMovies)
+    const allMovies = getAllMovies();
+    const recentMovies = createRecentMovies(allMovies);
+    const classicMovies = createClassicMovies(allMovies);
+    const lastMovies = createLastMovies(allMovies);
 //    Criar todos os filmes
-    createMovieCarrossel(allMovies,"divFilmes","#lista-filmes","box-filme")
+    createMovieCarrossel("titulo-filmes","FILMES",allMovies,"divFilmes","#lista-filmes","box-filme")
 //    Criar recentes
-    createMovieCarrossel(recentMovies,"divRecents","#lista-recentes","box-recente")
+    createMovieCarrossel("titulo-novidades","NOVIDADES",recentMovies,"divRecents","#lista-recentes","box-recente")
 //    Criar classicos
-    createMovieCarrossel(classicMovies,"divClassico","#lista-classicos","box-classico")
+    createMovieCarrossel("titulo-classicos","CLÁSSICOS",classicMovies,"divClassico","#lista-classicos","box-classico")
 //    Criar ultimos adicionados
-    createMovieCarrossel(lastMovies,"divUltimos","#lista-ultimos","box-ultimos")
+    createMovieCarrossel("titulo-ultimos","ÚLTIMOS ADICIONADOS",lastMovies,"divUltimos","#lista-ultimos","box-ultimos")
 //    Criar Ação
-    createMovieCarrossel(createMoviesCategory(allMovies,"Ação"),"divAcao","#lista-acao","box-acao")
+    createMovieCarrossel("titulo-acao","AÇÃO",createMoviesCategory(allMovies,"Ação"),"divAcao","#lista-acao","box-acao")
 //    Criar Animação
-    createMovieCarrossel(createMoviesCategory(allMovies,"Animação"),"divAnimacao","#lista-animacao","box-animacao")
+    createMovieCarrossel("titulo-animacao","ANIMAÇÃO",createMoviesCategory(allMovies,"Animação"),"divAnimacao","#lista-animacao","box-animacao")
 //    Criar Aventura
-    createMovieCarrossel(createMoviesCategory(allMovies,"Aventura"),"divAventura","#lista-aventura","box-aventura")
+    createMovieCarrossel("titulo-aventura","AVENTURA",createMoviesCategory(allMovies,"Aventura"),"divAventura","#lista-aventura","box-aventura")
 //    Criar Comédia
-    createMovieCarrossel(createMoviesCategory(allMovies,"Comédia"),"divComedia","#lista-comedia","box-comedia")
+    createMovieCarrossel("titulo-comedia","COMÉDIA",createMoviesCategory(allMovies,"Comédia"),"divComedia","#lista-comedia","box-comedia")
 //    Criar Drama
-    createMovieCarrossel(createMoviesCategory(allMovies,"Drama"),"divDrama","#lista-drama","box-drama")
+    createMovieCarrossel("titulo-drama","DRAMA",createMoviesCategory(allMovies,"Drama"),"divDrama","#lista-drama","box-drama")
 //    Criar Familia
-    createMovieCarrossel(createMoviesCategory(allMovies,"Família"),"divFamilia","#lista-familia","box-familia")
+    createMovieCarrossel("titulo-familia","FAMÍLIA",createMoviesCategory(allMovies,"Família"),"divFamilia","#lista-familia","box-familia")
 //    Criar Fantasia
-    createMovieCarrossel(createMoviesCategory(allMovies,"Fantasia"),"divFantasia","#lista-fantasia","box-fantasia")
+    createMovieCarrossel("titulo-fantasia","FANTASIA",createMoviesCategory(allMovies,"Fantasia"),"divFantasia","#lista-fantasia","box-fantasia")
 //    Criar Ficção científica
-    createMovieCarrossel(createMoviesCategory(allMovies,"Ficção científica"),"divFiccao","#lista-ficcao","box-ficcao")
+    createMovieCarrossel("titulo-ficcao","FICÇÃO CIENTÍFICA",createMoviesCategory(allMovies,"Ficção científica"),"divFiccao","#lista-ficcao","box-ficcao")
 //    Criar Romance
-    createMovieCarrossel(createMoviesCategory(allMovies,"Romance"),"divRomance","#lista-romance","box-romance")
+    createMovieCarrossel("titulo-romance","ROMANCE",createMoviesCategory(allMovies,"Romance"),"divRomance","#lista-romance","box-romance")
 //    Criar Terror
-    createMovieCarrossel(createMoviesCategory(allMovies,"Terror"),"divTerror","#lista-terror","box-terror")
+    createMovieCarrossel("titulo-terror","TERROR",createMoviesCategory(allMovies,"Terror"),"divTerror","#lista-terror","box-terror")
 }
 main()

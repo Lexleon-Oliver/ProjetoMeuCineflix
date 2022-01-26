@@ -34,4 +34,18 @@ public class CatalogoResource {
         modelAndView.setViewName("filme");
         return modelAndView;
     }
+
+    @GetMapping("/series")
+    public ModelAndView getSeries() {
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("series");
+        return modelAndView;
+    }
+
+    @GetMapping("/serie")
+    public ModelAndView detailSerie() {
+        final ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("serie");
+        return modelAndView;
+    }
 }
