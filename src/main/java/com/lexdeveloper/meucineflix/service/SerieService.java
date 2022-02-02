@@ -20,4 +20,6 @@ public interface SerieService {
     SerieDTO findById(Long id);
 
     void playById(Long id);
+
+    MessageResponseDTO updateSerie(Long id, SerieDTO serieDTO);
 }

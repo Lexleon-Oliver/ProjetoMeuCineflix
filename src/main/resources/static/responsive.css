@@ -13,5 +13,10 @@
 @media screen and (min-width:100px) {
     .descricao{
         width: 50%;
+        height: 50%;
     }
+    .serie-selecionada .descricao-serie {
+        margin: 10px 20px 20px;
+    }
+
 }

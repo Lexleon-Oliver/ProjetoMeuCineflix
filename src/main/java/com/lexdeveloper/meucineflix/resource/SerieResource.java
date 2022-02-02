@@ -57,4 +57,10 @@ public class SerieResource {
         service.playById(id);
     }
 
+    @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public MessageResponseDTO updateSerie(@PathVariable Long id, @Valid @RequestBody SerieDTO serieDTO){
+        return service.updateSerie(id,serieDTO);
+    }
+
 }

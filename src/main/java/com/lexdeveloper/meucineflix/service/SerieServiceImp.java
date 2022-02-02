@@ -1,6 +1,7 @@
 package com.lexdeveloper.meucineflix.service;
 
 import com.lexdeveloper.meucineflix.dto.request.EpisodeDTO;
+import com.lexdeveloper.meucineflix.dto.request.MovieDTO;
 import com.lexdeveloper.meucineflix.dto.request.SeasonDTO;
 import com.lexdeveloper.meucineflix.dto.request.SerieDTO;
 import com.lexdeveloper.meucineflix.dto.response.MessageResponseDTO;
@@ -93,6 +94,13 @@ public class SerieServiceImp implements SerieService {
                 .builder()
                 .message(message+id)
                 .build();
+    }
+
+    public MessageResponseDTO updateSerie(Long id, SerieDTO serieDTO) {
+        verifyIfExists(id);
+        Serie serieToUpdate = mapper.toSerieModel(serieDTO);
+        Serie updatedSerie = repository.save(serieToUpdate);
+        return createdMessageResponse(updatedSerie.getId(), "Updated serie with ID ");
     }
 
 }

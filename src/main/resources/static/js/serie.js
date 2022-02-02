@@ -84,5 +84,54 @@ function createAllSeasonsCarousel(allSeasons){
     })
 }
 
+function avaliar(){
+    if(document.querySelector("#cm_star-5").checked){
+        selectedSerie.rating = 5
+    }else if(document.querySelector("#cm_star-4").checked){
+        selectedSerie.rating = 4
+    }else if(document.querySelector("#cm_star-3").checked){
+        selectedSerie.rating = 3
+    }else if(document.querySelector("#cm_star-2").checked){
+        selectedSerie.rating = 2
+    }else if(document.querySelector("#cm_star-1").checked){
+        selectedSerie.rating = 1
+    }else{
+        selectedSerie.rating = 0
+    }
+    putSerie(selectedSerie);
+
+}
+
+function putSerie(serie){
+    const xhr = new XMLHttpRequest();
+
+// configure a `POST` request
+    xhr.open('PUT', 'http://localhost:8080/api/v1/series/'+serie.id);
+
+// create a JSON object
+    const params = {
+        id: serie.id,
+        name: serie.name,
+        nameBr: serie.nameBr,
+        year:serie.year,
+        description: serie.description,
+        thumbnail: serie.thumbnail,
+        background: serie.background,
+        genre: serie.genre,
+        rating: serie.rating
+    };
+
+// set `Content-Type` header
+    xhr.setRequestHeader('Content-Type', 'application/json');
+
+// pass `params` to `send()` method
+    xhr.send(JSON.stringify(params));
+
+// listen for `load` event
+    xhr.onload = () => {
+        console.log(xhr.responseText);
+    }
+}
+
 getSerieData();
 createAllSeasonsCarousel(allSeasons);
