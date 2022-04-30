@@ -21,6 +21,9 @@ public class Season {
     @Column(nullable = false)
     private int numSeason;
 
+    @Column()
+    private String seasonBack;
+
     @ManyToOne
     private Serie serie;
 

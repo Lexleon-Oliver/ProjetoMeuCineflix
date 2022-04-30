@@ -72,6 +72,7 @@ public class SerieMapperImpl implements SerieMapper{
         seasonDTO.setId(season.getId());
         seasonDTO.setNumSeason(season.getNumSeason());
         seasonDTO.setSerie(seasonToSerieID(season));
+        seasonDTO.setSeasonBack(season.getSeasonBack());
         seasonDTO.setEpisode(toEpisodeListDTO(season.getEpisodes()));
         return seasonDTO;
     }

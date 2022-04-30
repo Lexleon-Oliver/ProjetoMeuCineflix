@@ -46,7 +46,7 @@ function getAllSeasons(selectedSerie){
 
 }
 
-function createSeasonCarousel(h3,textTitle, allEpisodes, divName, div, classImg){
+function createSeasonCarousel(h3,textTitle, allEpisodes, divName, div, classImg, seasonBack){
     h3.textContent=textTitle;
     h3.style.marginTop= "20px";
     allEpisodes.map((item)=> {
@@ -58,7 +58,8 @@ function createSeasonCarousel(h3,textTitle, allEpisodes, divName, div, classImg)
         div1.setAttribute('onclick','idEpisode('+item.id+')');
         const img = document.createElement('img');
         img.setAttribute('class',classImg);
-        img.setAttribute('src',selectedSerie.thumbnail)
+        console.log(selectedSerie.season.seasonBack);
+        img.setAttribute('src',seasonBack);
         div1.appendChild(img);
         div1.appendChild(name)
         div.appendChild(div1);
@@ -77,7 +78,7 @@ function createAllSeasonsCarousel(allSeasons){
         div.setAttribute('class','owl-carousel owl-theme');
         div.setAttribute('id','lista-temporada-'+season);
 
-        createSeasonCarousel(h3,'TEMPORADA '+season,item.episode,"divTemp"+season,div,"box-temp-"+season);
+        createSeasonCarousel(h3,'TEMPORADA '+season,item.episode,"divTemp"+season,div,"box-temp-"+season,item.seasonBack);
         divSeason.appendChild(h3);
         divSeason.appendChild(div)
         divSeasons.appendChild(divSeason);

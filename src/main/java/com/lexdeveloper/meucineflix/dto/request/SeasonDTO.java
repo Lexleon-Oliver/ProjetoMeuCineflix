@@ -20,5 +20,7 @@ public class SeasonDTO {
 
     private Long serie;
 
+    private String seasonBack;
+
     private List<EpisodeDTO> episode;
 }

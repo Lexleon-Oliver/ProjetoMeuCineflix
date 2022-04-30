@@ -90,7 +90,7 @@ function createLastMovies(allMovies){
         }
     })
     allMovies.map((item)=> {
-        if(item.id>=lastId-30){
+        if(item.id>=lastId-20){
             last.push(item)
         }
     })
